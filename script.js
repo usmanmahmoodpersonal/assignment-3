@@ -20,7 +20,6 @@ function addR() {
         numRows++;
         numCols++;
     }
-    console.log(`Rows: ${numRows}, Columns: ${numCols}`);
 }
 
 // Add a column
@@ -36,7 +35,6 @@ function addC() {
         numRows++; 
         numCols++;
     }
-    console.log(`Rows: ${numRows}, Columns: ${numCols}`);
 }
 
 // Remove a row
@@ -52,7 +50,6 @@ function removeR() {
     else {
         window.alert('No Rows to Delete!');
     }
-    console.log(`Rows: ${numRows}, Columns: ${numCols}`);
 }
 
 // Remove a column
@@ -70,7 +67,6 @@ function removeC() {
     else {
         window.alert('No Columns to Delete!');
     }
-    console.log(`Rows: ${numRows}, Columns: ${numCols}`);
 }
 
 // Set global variable for selected color
@@ -81,15 +77,41 @@ function selectColor(){
 
 // Fill all uncolored cells
 function fillU(){
-    alert("Clicked Fill All Uncolored"); // Replace this line with your code.
+    if (colorSelected === undefined || colorSelected === '') {
+        window.alert('Must Select a Color FIRST!');
+    }
+    else if (table.innerHTML === '') {
+        window.alert('GRID IS EMPTY!');
+    }
+    else {
+        document.querySelectorAll('td').forEach((value, index, array) => {
+            if (window.getComputedStyle(value).getPropertyValue('backgroundColor') !== 'white') {
+                value.style.backgroundColor = `${colorSelected.toLowerCase()}`;
+            }
+        });
+    }
 }
 
 // Fill all cells
 function fillAll(){
-    alert("Clicked Fill All"); // Replace this line with your code.
+    if (colorSelected === undefined || colorSelected === '') {
+        window.alert('Must Select a Color FIRST!');
+    }
+    else if (table.innerHTML === '') {
+        window.alert('GRID IS EMPTY!');
+    }
+    else {
+        document.querySelectorAll('td').forEach((value, index, array) => {
+            value.style.backgroundColor = `${colorSelected.toLowerCase()}`;
+        });
+    }
 }
 
 // Clear all cells
 function clearAll(){
-    alert("Clicked Clear All"); // Replace this line with your code.
+    table.innerHTML = '';
+    numRows = 0;
+    numCols = 0;
+    colorSelected = '';
+    document.querySelector('select').value = 'SELECT';
 }
