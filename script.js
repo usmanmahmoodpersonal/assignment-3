@@ -41,7 +41,17 @@ function addC() {
 
 // Remove a row
 function removeR() {
-    alert("Clicked Remove Row"); // Replace this line with your code.
+    if (numRows) {
+        document.querySelector('tbody').children[0].remove();
+        if (document.querySelector('table').innerHTML === '' || document.querySelector('tbody').innerHTML === '') {
+            numRows = 0;
+            numCols = 0;
+            document.querySelector('tbody').remove();
+        }
+    }
+    else {
+        window.alert('No Rows to Delete!');
+    }
 }
 
 // Remove a column
