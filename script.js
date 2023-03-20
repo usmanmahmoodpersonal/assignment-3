@@ -2,6 +2,7 @@
 let numRows = 0;
 let numCols = 0;
 let colorSelected; 
+let grid = document.querySelector('#grid');
 
 // Add a row
 function addR() {
@@ -10,7 +11,14 @@ function addR() {
 
 // Add a column
 function addC() {
-    alert("Clicked Add Col"); // Replace this line with your code.
+    if (grid.firstElementChild) {
+        Array.from(grid.firstElementChild.children).forEach((value, index, array) => {
+            value.insertCell();
+        });
+    }
+    else {
+        grid.insertRow().insertCell();
+    }
 }
 
 // Remove a row
