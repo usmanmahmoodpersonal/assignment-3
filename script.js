@@ -2,23 +2,41 @@
 let numRows = 0;
 let numCols = 0;
 let colorSelected; 
-let grid = document.querySelector('#grid');
+let table = document.querySelector('#grid');
 
 // Add a row
 function addR() {
-    alert("Clicked Add Row"); // Replace this line with your code.
+    if (table.firstElementChild) {
+        let result = '<tr>';
+        for (let i = 0; i < numCols; i++) { 
+            result += '<td></td>';
+        }
+        result += '</tr>';
+        document.querySelector('tbody').innerHTML += result;
+        numRows++;
+    }   
+    else {
+        table.insertRow().insertCell();
+        numRows++;
+        numCols++;
+    }
+    console.log(`Rows: ${numRows}, Columns: ${numCols}`);
 }
 
 // Add a column
 function addC() {
-    if (grid.firstElementChild) {
-        Array.from(grid.firstElementChild.children).forEach((value, index, array) => {
+    if (table.firstElementChild) {
+        Array.from(table.firstElementChild.children).forEach((value, index, array) => {
             value.insertCell();
         });
+        numCols++;
     }
     else {
-        grid.insertRow().insertCell();
+        table.insertRow().insertCell();
+        numRows++; 
+        numCols++;
     }
+    console.log(`Rows: ${numRows}, Columns: ${numCols}`);
 }
 
 // Remove a row
