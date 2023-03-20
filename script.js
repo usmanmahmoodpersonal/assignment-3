@@ -75,7 +75,7 @@ function selectColor(){
     console.log(colorSelected);
 }
 
-// Fill all uncolored cells
+// Fill all uncolored cells WORK ON THIS NEXT
 function fillU(){
     if (colorSelected === undefined || colorSelected === '') {
         window.alert('Must Select a Color FIRST!');
@@ -85,7 +85,7 @@ function fillU(){
     }
     else {
         document.querySelectorAll('td').forEach((value, index, array) => {
-            if (window.getComputedStyle(value).getPropertyValue('backgroundColor') !== 'white') {
+            if (value.style.backgroundColor === '') {
                 value.style.backgroundColor = `${colorSelected.toLowerCase()}`;
             }
         });
@@ -115,3 +115,11 @@ function clearAll(){
     colorSelected = '';
     document.querySelector('select').value = 'SELECT';
 }
+
+document.addEventListener('click', (event) => {
+    if (event.target.tagName === 'TD') {
+        if (colorSelected !== undefined) {
+            event.target.style.backgroundColor = `${colorSelected.toLowerCase()}`;
+        }
+    }
+});
