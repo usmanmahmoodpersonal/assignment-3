@@ -52,11 +52,25 @@ function removeR() {
     else {
         window.alert('No Rows to Delete!');
     }
+    console.log(`Rows: ${numRows}, Columns: ${numCols}`);
 }
 
 // Remove a column
 function removeC() {
-    alert("Clicked Remove Col"); // Replace this line with your code.
+    if (numCols) {
+        Array.from(document.querySelector('tbody').children).forEach((value, index, array) => {
+            value.lastElementChild.remove();
+        });
+        numCols--;
+        if (document.querySelector('tbody').children[0].innerHTML === '') {
+            numRows = 0;
+            document.querySelector('table').innerHTML = '';
+        }
+    }
+    else {
+        window.alert('No Columns to Delete!');
+    }
+    console.log(`Rows: ${numRows}, Columns: ${numCols}`);
 }
 
 // Set global variable for selected color
