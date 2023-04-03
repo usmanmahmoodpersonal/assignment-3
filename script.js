@@ -85,7 +85,7 @@ function fillU(){
     }
     else {
         document.querySelectorAll('td').forEach((value, index, array) => {
-            if (value.style.backgroundColor === '') {
+            if (value.style.backgroundColor === '' || value.style.backgroundColor === 'white') {
                 value.style.backgroundColor = `${colorSelected.toLowerCase()}`;
             }
         });
@@ -109,11 +109,10 @@ function fillAll(){
 
 // Clear all cells
 function clearAll(){
-    table.innerHTML = '';
-    numRows = 0;
-    numCols = 0;
-    colorSelected = '';
-    document.querySelector('select').value = 'SELECT';
+    document.querySelectorAll('td').forEach((value, index, array) => {
+        value.style.backgroundColor = 'white';
+        value.style.border = '1px solid black';
+    });
 }
 
 document.addEventListener('click', (event) => {
